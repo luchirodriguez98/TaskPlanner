@@ -1,6 +1,6 @@
 function CreateToDo() {
     return(
-        <button>+</button>
+        <button onClick={()=> console.log('boton apretado')}>+</button>
     )
 }
 

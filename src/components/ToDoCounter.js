@@ -1,8 +1,13 @@
 function ToDoCounter({total, completed}) {
     return(
-        <h3>
+        completed === total?
+            <h3>
+                Has completado todas tus tareas!
+            </h3>
+        :
+            <h3>
             Has completado {completed} de {total} tareas
-        </h3>
+            </h3>
     )    
 }
 

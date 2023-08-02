@@ -14,13 +14,48 @@ export const defaultToDos = [
 ];
 
 function App() {
+
+//estado para contador
+const [toDos, setToDos] = React.useState(defaultToDos);
+
+const completedToDos = toDos.filter(toDo=> toDo.completed).length;
+const totalToDos= toDos.length;
+
+//estado para busqueda
+const [searchValue, setSearchValue] = React.useState('');
+console.log(searchValue);
+
+//estado para lista
+const searchedToDos = toDos.filter(todo=>todo.text.toLowerCase().includes(searchValue.toLowerCase()));
+console.log(searchedToDos);
+
+//estado para items(marcar como hecho o eliminar)
+
+const completeToDos = (text) =>{
+
+  const newToDos = [...toDos];
+  const toDoIndex = newToDos.findIndex((toDo) => toDo.text == text);
+  newToDos[toDoIndex].completed = true;
+
+  setToDos(newToDos);
+}
+
+const deleteToDos = (text) =>{
+
+  const newToDos = [...toDos];
+  const toDoIndex = newToDos.findIndex((toDo) => toDo.text == text);
+  newToDos.splice(toDoIndex,1);
+
+  setToDos(newToDos);
+}
+
   return (
     <React.Fragment>
-       <ToDoCounter completed={16} total={25}/>
-       <ToDoSearch />
+       <ToDoCounter completed={completedToDos} total={totalToDos}/>
+       <ToDoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
        <ToDoList>
-        {defaultToDos.map(todo=>(
-          <ToDoItem key={todo.text} text={todo.text} completed={todo.completed}/>
+        {searchedToDos.map(todo=>(
+          <ToDoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={()=> completeToDos(todo.text)} onDelete={()=> deleteToDos(todo.text)}/>
         ))}
        </ToDoList>
        <CreateToDo />
