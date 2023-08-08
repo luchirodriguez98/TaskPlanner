@@ -6,17 +6,37 @@ import { ToDoList } from "./components/ToDoList";
 import { ToDoItem } from "./components/ToDoItem";
 import { CreateToDo } from "./components/CreateToDo";
 
-export const defaultToDos = [
-  {text: 'Cortar Cebolla', completed: false},
-  {text: 'Comprar leche', completed: true},
-  {text: 'Llamar oculista', completed: false},
-  {text: 'Hacer tarea de ingles', completed: true},
-];
+// export const defaultToDos = [
+//   {text: 'Cortar Cebolla', completed: false},
+//   {text: 'Comprar leche', completed: true},
+//   {text: 'Llamar oculista', completed: false},
+//   {text: 'Hacer tarea de ingles', completed: true},
+// ];
 
 function App() {
 
+//localStorage
+
+const localStorageToDos = localStorage.getItem('TODOS_V1');
+let parsedToDos;
+
+if(!localStorageToDos){
+  localStorage.setItem('TODOS_V1', JSON.stringify([]));
+  parsedToDos = [];
+} else{
+  parsedToDos= JSON.parse(localStorageToDos);
+}
+
+//actualizar estado y local storage
+
+const saveToDos = (newToDos) => {
+  localStorage.setItem('TODOS_V1', JSON.stringify(newToDos));
+  setToDos(newToDos)
+}
+
+
 //estado para contador
-const [toDos, setToDos] = React.useState(defaultToDos);
+const [toDos, setToDos] = React.useState(parsedToDos);
 
 const completedToDos = toDos.filter(toDo=> toDo.completed).length;
 const totalToDos= toDos.length;
@@ -37,7 +57,7 @@ const completeToDos = (text) =>{
   const toDoIndex = newToDos.findIndex((toDo) => toDo.text == text);
   newToDos[toDoIndex].completed = true;
 
-  setToDos(newToDos);
+  saveToDos(newToDos);
 }
 
 const deleteToDos = (text) =>{
@@ -46,7 +66,7 @@ const deleteToDos = (text) =>{
   const toDoIndex = newToDos.findIndex((toDo) => toDo.text == text);
   newToDos.splice(toDoIndex,1);
 
-  setToDos(newToDos);
+  saveToDos(newToDos);
 }
 
   return (
