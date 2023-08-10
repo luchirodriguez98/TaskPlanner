@@ -13,27 +13,29 @@ import { CreateToDo } from "./components/CreateToDo";
 //   {text: 'Hacer tarea de ingles', completed: true},
 // ];
 
+function useLocalStorage (){
+
+  //actualizar estado y local storage
+
+  const localStorageToDos = localStorage.getItem('TODOS_V1');
+  let parsedToDos;
+
+  if(!localStorageToDos){
+    localStorage.setItem('TODOS_V1', JSON.stringify([]));
+    parsedToDos = [];
+  } else{
+    parsedToDos= JSON.parse(localStorageToDos);
+  }
+
+  const saveToDos = (newToDos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newToDos));
+    setToDos(newToDos)
+  }
+}
+
+
+
 function App() {
-
-//localStorage
-
-const localStorageToDos = localStorage.getItem('TODOS_V1');
-let parsedToDos;
-
-if(!localStorageToDos){
-  localStorage.setItem('TODOS_V1', JSON.stringify([]));
-  parsedToDos = [];
-} else{
-  parsedToDos= JSON.parse(localStorageToDos);
-}
-
-//actualizar estado y local storage
-
-const saveToDos = (newToDos) => {
-  localStorage.setItem('TODOS_V1', JSON.stringify(newToDos));
-  setToDos(newToDos)
-}
-
 
 //estado para contador
 const [toDos, setToDos] = React.useState(parsedToDos);
