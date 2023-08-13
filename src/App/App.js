@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
-import { ToDoCounter } from "./components/ToDoCounter";
-import { ToDoSearch } from "./components/ToDoSearch";
-import { ToDoList } from "./components/ToDoList";
-import { ToDoItem } from "./components/ToDoItem";
-import { CreateToDo } from "./components/CreateToDo";
+// import '../App/App.css';
+import { ToDoCounter } from "../components/ToDoCounter/ToDoCounter";
+import { ToDoSearch } from "../components/ToDoSearch/ToDoSearch";
+import { ToDoList } from "../components/ToDoList/ToDoList";
+import { ToDoItem } from "../components/ToDoItem/ToDoItem";
+import { CreateToDo } from "../components/CreateToDo/CreateToDo";
 
 // export const defaultToDos = [
 //   {text: 'Cortar Cebolla', completed: false},
@@ -12,33 +12,37 @@ import { CreateToDo } from "./components/CreateToDo";
 //   {text: 'Llamar oculista', completed: false},
 //   {text: 'Hacer tarea de ingles', completed: true},
 // ];
-
-function useLocalStorage (){
+function useLocalStorage(itemName,initialValue){
 
   //actualizar estado y local storage
 
-  const localStorageToDos = localStorage.getItem('TODOS_V1');
-  let parsedToDos;
-
-  if(!localStorageToDos){
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedToDos = [];
-  } else{
-    parsedToDos= JSON.parse(localStorageToDos);
+  const localStorageItem=localStorage.getItem(itemName);
+  
+  let parsedItem;
+  
+  if(!localStorageItem){
+    localStorage.setItem(itemName,JSON.stringify(initialValue));
+    parsedItem=initialValue;
+  }else{
+    parsedItem=JSON.parse(localStorageItem);
   }
 
-  const saveToDos = (newToDos) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify(newToDos));
-    setToDos(newToDos)
-  }
+  const[item,setItem]=React.useState(parsedItem);
+  
+  const saveItem=(newItem)=>{
+    localStorage.setItem(itemName,JSON.stringify(newItem));
+    setItem(newItem);
+  };
+  
+  return[item,saveItem];
 }
-
 
 
 function App() {
 
 //estado para contador
-const [toDos, setToDos] = React.useState(parsedToDos);
+
+const[toDos,saveToDos]=useLocalStorage('TODOS_V1',[]);
 
 const completedToDos = toDos.filter(toDo=> toDo.completed).length;
 const totalToDos= toDos.length;
@@ -86,3 +90,4 @@ const deleteToDos = (text) =>{
 }
 
 export {App};
+export {useLocalStorage};
