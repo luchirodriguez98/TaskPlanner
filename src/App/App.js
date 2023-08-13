@@ -1,10 +1,7 @@
 import React from 'react';
 // import '../App/App.css';
-import { ToDoCounter } from "../components/ToDoCounter/ToDoCounter";
-import { ToDoSearch } from "../components/ToDoSearch/ToDoSearch";
-import { ToDoList } from "../components/ToDoList/ToDoList";
-import { ToDoItem } from "../components/ToDoItem/ToDoItem";
-import { CreateToDo } from "../components/CreateToDo/CreateToDo";
+import { useLocalStorage } from "./UseLocalStorage";
+import { AppUI } from './AppUI';
 
 // export const defaultToDos = [
 //   {text: 'Cortar Cebolla', completed: false},
@@ -12,30 +9,7 @@ import { CreateToDo } from "../components/CreateToDo/CreateToDo";
 //   {text: 'Llamar oculista', completed: false},
 //   {text: 'Hacer tarea de ingles', completed: true},
 // ];
-function useLocalStorage(itemName,initialValue){
 
-  //actualizar estado y local storage
-
-  const localStorageItem=localStorage.getItem(itemName);
-  
-  let parsedItem;
-  
-  if(!localStorageItem){
-    localStorage.setItem(itemName,JSON.stringify(initialValue));
-    parsedItem=initialValue;
-  }else{
-    parsedItem=JSON.parse(localStorageItem);
-  }
-
-  const[item,setItem]=React.useState(parsedItem);
-  
-  const saveItem=(newItem)=>{
-    localStorage.setItem(itemName,JSON.stringify(newItem));
-    setItem(newItem);
-  };
-  
-  return[item,saveItem];
-}
 
 
 function App() {
@@ -60,7 +34,7 @@ console.log(searchedToDos);
 const completeToDos = (text) =>{
 
   const newToDos = [...toDos];
-  const toDoIndex = newToDos.findIndex((toDo) => toDo.text == text);
+  const toDoIndex = newToDos.findIndex((toDo) => toDo.text === text);
   newToDos[toDoIndex].completed = true;
 
   saveToDos(newToDos);
@@ -69,24 +43,23 @@ const completeToDos = (text) =>{
 const deleteToDos = (text) =>{
 
   const newToDos = [...toDos];
-  const toDoIndex = newToDos.findIndex((toDo) => toDo.text == text);
+  const toDoIndex = newToDos.findIndex((toDo) => toDo.text === text);
   newToDos.splice(toDoIndex,1);
 
   saveToDos(newToDos);
 }
 
   return (
-    <React.Fragment>
-       <ToDoCounter completed={completedToDos} total={totalToDos}/>
-       <ToDoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
-       <ToDoList>
-        {searchedToDos.map(todo=>(
-          <ToDoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={()=> completeToDos(todo.text)} onDelete={()=> deleteToDos(todo.text)}/>
-        ))}
-       </ToDoList>
-       <CreateToDo />
-    </React.Fragment>
-  );
+    <AppUI 
+    completedToDos = {completedToDos}
+     totalToDos = {totalToDos}
+     searchValue = {searchValue} 
+     setSearchValue = {setSearchValue}
+     searchedToDos = {searchedToDos} 
+     completeToDos = {completeToDos} 
+     deleteToDos = {deleteToDos}
+     />
+  )
 }
 
 export {App};
