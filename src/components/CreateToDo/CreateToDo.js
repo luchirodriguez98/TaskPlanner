@@ -1,6 +1,9 @@
-function CreateToDo() {
+function CreateToDo({setOpenModal}) {
     return(
-        <button onClick={()=> console.log('boton apretado')}>+</button>
+        <button onClick={()=> {
+            setOpenModal(state => !state)            
+            console.log('boton apretado')
+        }}>+</button>
     )
 }
 

@@ -5,6 +5,10 @@ const ToDoContext = React.createContext();
 
 function ToDoProvider ({children}){
 
+    //estado para modal
+    const [openModal, setOpenModal] =React.useState(false);
+
+
     //estado para contador
 
     const{item:toDos,saveItem:saveToDos, loading, error}=useLocalStorage('TODOS_V1',[]);
@@ -40,9 +44,20 @@ function ToDoProvider ({children}){
     saveToDos(newToDos);
     }
 
+    //agregar item
+
+    const addToDo = (text) =>{
+        const newToDos = [...toDos];
+        newToDos.push({
+            text,
+            completed: false
+        })
+
+        saveToDos(newToDos);
+    }
 
     return(
-        <ToDoContext.Provider value={{completedToDos, totalToDos, searchValue, setSearchValue, searchedToDos, completeToDos, deleteToDos, loading, error}}>
+        <ToDoContext.Provider value={{completedToDos, totalToDos, searchValue, setSearchValue, searchedToDos, completeToDos, deleteToDos, addToDo, loading, error, openModal, setOpenModal}}>
             {children}
         </ToDoContext.Provider>
     )

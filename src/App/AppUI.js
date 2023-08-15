@@ -8,11 +8,13 @@ import { ToDosLoading } from "../components/ToDosLoading/ToDosLoading";
 import { ToDosError } from "../components/ToDosError/ToDosError";
 import { EmptyToDos } from "../components/EmptyToDos/EmptyToDos";
 import { ToDoContext } from '../components/ToDoContext/ToDoContext';
+import { Modal } from '../components/Modal/Modal';
+import { ToDoForm } from '../components/ToDoForm/ToDoForm'
 
 
 function AppUI (){
 
-  const {loading,error,searchedToDos,completeToDos,deleteToDos} = React.useContext(ToDoContext)
+  const {loading,error,searchedToDos,completeToDos,deleteToDos, openModal, setOpenModal} = React.useContext(ToDoContext)
 
   return (
         <React.Fragment>
@@ -32,8 +34,12 @@ function AppUI (){
                 onDelete={()=> deleteToDos(todo.text)}/>
               ))}
           </ToDoList>
-
-           <CreateToDo />
+           <CreateToDo setOpenModal={setOpenModal}/>
+           {openModal && (
+              <Modal> 
+                <ToDoForm />
+              </Modal>
+            )}
         </React.Fragment>
       );
 }
