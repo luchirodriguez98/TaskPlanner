@@ -16,14 +16,14 @@ function App() {
 
 //estado para contador
 
-const[toDos,saveToDos]=useLocalStorage('TODOS_V1',[]);
+const{item:toDos,saveItem:saveToDos, loading, error}=useLocalStorage('TODOS_V1',[]);
 
 const completedToDos = toDos.filter(toDo=> toDo.completed).length;
 const totalToDos= toDos.length;
 
 //estado para busqueda
 const [searchValue, setSearchValue] = React.useState('');
-console.log(searchValue);
+
 
 //estado para lista
 const searchedToDos = toDos.filter(todo=>todo.text.toLowerCase().includes(searchValue.toLowerCase()));
@@ -51,13 +51,15 @@ const deleteToDos = (text) =>{
 
   return (
     <AppUI 
+    loading = {loading}
+    error = {error}
     completedToDos = {completedToDos}
-     totalToDos = {totalToDos}
-     searchValue = {searchValue} 
-     setSearchValue = {setSearchValue}
-     searchedToDos = {searchedToDos} 
-     completeToDos = {completeToDos} 
-     deleteToDos = {deleteToDos}
+    totalToDos = {totalToDos}
+    searchValue = {searchValue} 
+    setSearchValue = {setSearchValue}
+    searchedToDos = {searchedToDos} 
+    completeToDos = {completeToDos} 
+    deleteToDos = {deleteToDos}
      />
   )
 }
