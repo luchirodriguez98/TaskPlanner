@@ -53,3 +53,10 @@ function useLocalStorage(itemName,initialValue){
   }
 
   export {useLocalStorage}
+
+  // export const defaultToDos = [
+//   {text: 'Cortar Cebolla', completed: false},
+//   {text: 'Comprar leche', completed: true},
+//   {text: 'Llamar oculista', completed: false},
+//   {text: 'Hacer tarea de ingles', completed: true},
+// ];
