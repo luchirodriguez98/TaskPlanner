@@ -1,8 +1,11 @@
 import './EmptyToDos.css';
 
+
 function EmptyToDos(){
     return(
-        <p>Crea tu primer To Do!</p>
+        <li className="list-todo-item">
+        <p>Crea tu primer TO DO!</p>
+        </li>
     )
 }
 

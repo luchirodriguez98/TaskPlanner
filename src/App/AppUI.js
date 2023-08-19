@@ -25,7 +25,7 @@ function AppUI (){
               {/* le damos opciones a realizar si esta cargando, si dio error, si el searched todo esta vacio o si esta todo OK*/}
               {loading && <ToDosLoading />}
               {error && <ToDosError />}
-              {(!loading && searchedToDos.lenght === 0) && <EmptyToDos />}
+              {(!loading && searchedToDos.length === 0) && <EmptyToDos />}
               {searchedToDos.map(todo=>(
                 <ToDoItem 
                 key={todo.text} 

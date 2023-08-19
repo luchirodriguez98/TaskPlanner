@@ -2,7 +2,11 @@ import './ToDosLoading.css';
 
 function ToDosLoading(){
     return(
-        <p>Cargando...</p>
+        <ul>
+            <div className="LoadingTodo-container"></div>
+            <div className="LoadingTodo-container"></div>
+            <div className="LoadingTodo-container"></div>
+        </ul>
     )
 }
 

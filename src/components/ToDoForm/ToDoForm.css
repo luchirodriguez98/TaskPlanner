@@ -2,7 +2,7 @@ form {
     width: 90%;
     max-width: 300px;
     background-color: #fff;
-    padding: 0 20px;
+    padding: 15px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +47,7 @@ form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 80%;
   }
   
   .TodoForm-button {
@@ -77,6 +77,7 @@ form {
     justify-content: start;
     align-items: start;
     margin-bottom: 10px;
+    padding: 0 20px;
    }
    .title-principal-tablet{
     display: block;
@@ -96,6 +97,7 @@ form {
     .TodoForm-buttonContainer{
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
     .TodoForm-button--add{
         width: 300px;

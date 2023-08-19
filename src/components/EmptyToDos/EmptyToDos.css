@@ -1,0 +1,19 @@
+.list-todo-item{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    height: 50px;
+    width: 90%;
+    background-color: var(--color-white);
+    margin: 20px auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    box-shadow: 10px 14px 23px 12px rgb(253, 186, 186);
+}
+.list-todo-item p{
+    padding-left: 10px;
+    width: 80%;
+    align-self: center;
+    margin-left: 0;
+}

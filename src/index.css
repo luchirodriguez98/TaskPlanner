@@ -31,7 +31,7 @@ body{
 
 @media (min-width:768px) {
   body{
-      margin: 20px auto 0;
+      margin: 20px auto;
       width: 90vw;
       overflow-x: hidden;
   }
