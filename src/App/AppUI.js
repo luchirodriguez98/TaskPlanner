@@ -8,7 +8,8 @@ import { ToDosLoading } from "../components/ToDosLoading/ToDosLoading";
 import { ToDosError } from "../components/ToDosError/ToDosError";
 import { EmptyToDos } from "../components/EmptyToDos/EmptyToDos";
 import { ToDoContext } from '../components/ToDoContext/ToDoContext';
-import { Modal } from '../components/Modal/Modal';
+import { ModalMobile } from '../components/Modal/ModalMobile';
+import { ModalDesktop } from '../components/Modal/ModalDesktop';
 import { ToDoForm } from '../components/ToDoForm/ToDoForm'
 
 
@@ -36,10 +37,13 @@ function AppUI (){
           </ToDoList>
            <CreateToDo setOpenModal={setOpenModal}/>
            {openModal && (
-              <Modal> 
+              <ModalMobile> 
                 <ToDoForm />
-              </Modal>
+              </ModalMobile>
             )}
+            <ModalDesktop> 
+                <ToDoForm />
+              </ModalDesktop>
         </React.Fragment>
       );
 }

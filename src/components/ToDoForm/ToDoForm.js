@@ -1,5 +1,7 @@
 import React from "react";
+import './ToDoForm.css';
 import { ToDoContext } from "../ToDoContext/ToDoContext"
+import imagen from "../../img/imagen-tablet.jpg";
 
 function ToDoForm (){
 
@@ -25,10 +27,14 @@ function ToDoForm (){
 
     return(
         <form onSubmit={onSubmit}>
+            <h2  className="title-principal-tablet">TASK<br/> PLANNER</h2>
             <label>Escribe tu nuevo To Do</label>
-            <textarea  placeholder="Cortar cebolla" value={newToDoValue} onChange={onChange}/>
-            <button type="button" onClick={onCancel}>Cancelar</button>
-            <button>Guardar</button>
+            <input className="TodoForm-input" placeholder="Ir al supermercado" value={newToDoValue} onChange={onChange}/>
+            <div className="TodoForm-buttonContainer">
+            <button className="TodoForm-button TodoForm-button--cancel" type="button" onClick={onCancel}>Cancelar</button>
+            <button className="TodoForm-button TodoForm-button--add" >Guardar</button>
+            </div>
+            <img src={imagen} className="img-tablet"></img>
         </form>
     )
 }

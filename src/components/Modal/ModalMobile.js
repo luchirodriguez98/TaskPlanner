@@ -1,14 +1,15 @@
 import React from "react"
 import { createPortal } from "react-dom"
-import './Modal.css';
+import './ModalMobile.css'
 
-function Modal ({children}){
+function ModalMobile ({children}){
     return createPortal (
-        <div className="ModalBackgroung">
-            {children}
+        <div className="modal-mobile">
+        {children}
         </div>,
         document.getElementById('modal')
+        
     )
 }
 
-export {Modal}
+export {ModalMobile}

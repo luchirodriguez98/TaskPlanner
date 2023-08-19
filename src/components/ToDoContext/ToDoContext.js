@@ -1,13 +1,14 @@
 import React from "react";
+import './ToDoContext.css';
 import { useLocalStorage } from "./UseLocalStorage";
 
 const ToDoContext = React.createContext();
 
 function ToDoProvider ({children}){
 
+    
     //estado para modal
     const [openModal, setOpenModal] =React.useState(false);
-
 
     //estado para contador
 

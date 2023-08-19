@@ -1,0 +1,114 @@
+form {
+    width: 90%;
+    max-width: 300px;
+    background-color: #fff;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+  }
+  
+  label {
+    width: 230px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--color-dark-violet);
+    margin-bottom: 26px;
+  }
+  
+  .TodoForm-input {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-dark-violet);
+    border-radius: 5px;
+    box-shadow: 0px 5px 50px var(--color-pink);
+    color: #1E1E1F;
+    font-size: 20px;
+    text-align: center;
+    padding: 12px;
+    height: 96px;
+    width: calc(100% - 20px);
+  }
+  
+  .TodoForm-input::placeholder {
+    color: #A5A5A5;
+    font-family: 'Montserrat';
+    font-weight: 400;
+  }
+  
+  .TodoForm-input:focus {
+    outline-color: var(--color-pink);
+  }
+  
+  .TodoForm-buttonContainer {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .TodoForm-button {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    background-color: var(--color-pink);
+    color: var(--color-white);
+    width: 100px;
+    height: 40px;
+    border-radius: 2px;
+    border: none;
+    font-family: 'Montserrat';
+  }
+
+  .title-principal-tablet, .img-tablet{
+    display: none;
+  }
+  
+  @media (min-width:768px) {
+   form {
+    position: absolute;
+    top: 24%;
+    right: 5%;
+    max-width: 44%;
+    height: auto;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 10px;
+   }
+   .title-principal-tablet{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 40px;
+    color: var(--color-pink);
+    }
+    label{
+        display: none;
+    }
+    .TodoForm-input {
+        height: 30px;
+        font-size: 16px;
+        margin: 0 auto;
+    }
+    .TodoForm-buttonContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .TodoForm-button--add{
+        width: 300px;
+        height: 30px;
+        border-radius: 5px;
+    }
+    .TodoForm-button--cancel{
+        display: none;
+    }
+    .img-tablet{
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+    }
+   
+}

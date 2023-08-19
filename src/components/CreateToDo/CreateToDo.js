@@ -1,8 +1,10 @@
+import './CreateToDo.css';
+
 function CreateToDo({setOpenModal}) {
+    
     return(
-        <button onClick={()=> {
+        <button className="addTask-button-mobile" onClick={()=> {
             setOpenModal(state => !state)            
-            console.log('boton apretado')
         }}>+</button>
     )
 }
