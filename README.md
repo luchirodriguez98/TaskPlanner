@@ -8,4 +8,4 @@ Su funcionaldad es crear una lista con tareas por realizar, las cuales se pueden
 `HTML, CSS, JAVASCRIPT, REACT`
 
 ### Puedes ingresar al proyecto en el siguiente enlace
-[TaskPlanner](https://gasparsio.github.io/myPhotos/)
+[TaskPlanner](https://luchirodriguez98.github.io/TaskPlanner/)
