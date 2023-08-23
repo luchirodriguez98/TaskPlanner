@@ -1,11 +1,9 @@
 import React from "react";
 import './ToDoSearch.css';
-import { ToDoContext } from "../ToDoContext/ToDoContext";
 import imageSearch from "../../img/search.png"
 
-function ToDoSearch() {
+function ToDoSearch({searchValue, setSearchValue}) {
 
-    const {searchValue, setSearchValue} = React.useContext(ToDoContext)
 
     return(
         <div className="input-search">

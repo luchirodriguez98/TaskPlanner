@@ -1,11 +1,8 @@
 import React from "react";
 import './ToDoForm.css';
-import { ToDoContext } from "../ToDoContext/ToDoContext"
 import imagen from "../../img/imagen-tablet.jpg";
 
-function ToDoForm (){
-
-    const {setOpenModal, addToDo} = React.useContext(ToDoContext);
+function ToDoForm ({setOpenModal, addToDo}){
 
     //logica de modal
     const onSubmit = (event)=>{

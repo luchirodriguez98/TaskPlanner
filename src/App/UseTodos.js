@@ -1,10 +1,8 @@
 import React from "react";
-import './ToDoContext.css';
+import './UseTodos.css';
 import { useLocalStorage } from "./UseLocalStorage";
 
-const ToDoContext = React.createContext();
-
-function ToDoProvider ({children}){
+function useTodos (){
 
     
     //estado para modal
@@ -57,11 +55,21 @@ function ToDoProvider ({children}){
         saveToDos(newToDos);
     }
 
-    return(
-        <ToDoContext.Provider value={{completedToDos, totalToDos, searchValue, setSearchValue, searchedToDos, completeToDos, deleteToDos, addToDo, loading, error, openModal, setOpenModal}}>
-            {children}
-        </ToDoContext.Provider>
-    )
+    return{
+        completedToDos, 
+        totalToDos, 
+        searchValue, 
+        setSearchValue, 
+        searchedToDos, 
+        completeToDos, 
+        deleteToDos, 
+        addToDo, 
+        loading, 
+        error, 
+        openModal, 
+        setOpenModal,
+    }
 }
 
-export {ToDoContext, ToDoProvider}
+
+export {useTodos}

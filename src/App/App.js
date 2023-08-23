@@ -1,17 +1,58 @@
 import React from 'react';
 // import '../App/App.css';
 // import { useLocalStorage } from "../components/ToDoContext/UseLocalStorage";
-import { AppUI } from './AppUI';
-import { ToDoProvider } from '../components/ToDoContext/ToDoContext';
+import { useTodos } from "./UseTodos";
+import { ToDoHeader } from '../components/ToDoHeader/ToDoHeader'
+import { ToDoCounter } from "../components/ToDoCounter/ToDoCounter";
+import { ToDoSearch } from "../components/ToDoSearch/ToDoSearch";
+import { ToDoList } from "../components/ToDoList/ToDoList";
+import { ToDoItem } from "../components/ToDoItem/ToDoItem";
+import { CreateToDo } from "../components/CreateToDo/CreateToDo";
+import { ToDosLoading } from "../components/ToDosLoading/ToDosLoading";
+import { ToDosError } from "../components/ToDosError/ToDosError";
+import { EmptyToDos } from "../components/EmptyToDos/EmptyToDos";
+import { ToDoContext } from './UseTodos';
+import { ModalMobile } from '../components/Modal/ModalMobile';
+import { ModalDesktop } from '../components/Modal/ModalDesktop';
+import { ToDoForm } from '../components/ToDoForm/ToDoForm'
 
 
 
 function App() {
+
+  const {loading,error,searchedToDos,completeToDos,deleteToDos, openModal, setOpenModal, searchValue, setSearchValue, totalToDos, completedToDos, addToDo} = useTodos();
+
   return (
-    <ToDoProvider>
-      <AppUI />
-    </ToDoProvider>
-  )
+    <React.Fragment>
+      <ToDoHeader>
+        <ToDoCounter totalToDos={totalToDos} completedToDos={completedToDos}/>
+        <ToDoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
+      </ToDoHeader>
+        <ToDoList>
+          {/* le damos opciones a realizar si esta cargando, si dio error, si el searched todo esta vacio o si esta todo OK*/}
+          {loading && <ToDosLoading />}
+          {error && <ToDosError />}
+          {(!loading && searchedToDos.length === 0) && <EmptyToDos />}
+          {searchedToDos.map(todo=>(
+            <ToDoItem 
+            key={todo.text} 
+            text={todo.text} 
+            completed={todo.completed} 
+            onComplete={()=> completeToDos(todo.text)} 
+            onDelete={()=> deleteToDos(todo.text)}/>
+          ))}
+      </ToDoList>
+       <CreateToDo setOpenModal={setOpenModal}/>
+       {openModal && (
+          <ModalMobile> 
+            <ToDoForm />
+          </ModalMobile>
+        )}
+        <ModalDesktop> 
+            <ToDoForm setOpenModal={setOpenModal} addToDo={addToDo}/>
+          </ModalDesktop>
+    </React.Fragment>
+  );
 }
 
 export {App};
