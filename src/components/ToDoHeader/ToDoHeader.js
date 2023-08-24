@@ -2,8 +2,6 @@ import React from "react"
 
 function ToDoHeader ({children, loading}){
 
-    
-
     return(
         <header>
             {React.Children
