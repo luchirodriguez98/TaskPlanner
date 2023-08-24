@@ -11,7 +11,7 @@ import { CreateToDo } from "../components/CreateToDo/CreateToDo";
 import { ToDosLoading } from "../components/ToDosLoading/ToDosLoading";
 import { ToDosError } from "../components/ToDosError/ToDosError";
 import { EmptyToDos } from "../components/EmptyToDos/EmptyToDos";
-import { ToDoContext } from './UseTodos';
+// import { EmptySearchResults } from "../components/EmptySearchResults/EmptySearchResults";
 import { ModalMobile } from '../components/Modal/ModalMobile';
 import { ModalDesktop } from '../components/Modal/ModalDesktop';
 import { ToDoForm } from '../components/ToDoForm/ToDoForm'
@@ -24,25 +24,32 @@ function App() {
 
   return (
     <React.Fragment>
-      <ToDoHeader>
-        <ToDoCounter totalToDos={totalToDos} completedToDos={completedToDos}/>
+      <ToDoHeader loading={loading}>
+        <ToDoCounter totalToDos={totalToDos} completedToDos={completedToDos} />
         <ToDoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
       </ToDoHeader>
-        <ToDoList>
-          {/* le damos opciones a realizar si esta cargando, si dio error, si el searched todo esta vacio o si esta todo OK*/}
-          {loading && <ToDosLoading />}
-          {error && <ToDosError />}
-          {(!loading && searchedToDos.length === 0) && <EmptyToDos />}
-          {searchedToDos.map(todo=>(
+        <ToDoList 
+          /* le damos opciones a realizar si esta cargando, si dio error, si el searched todo esta vacio o si esta todo OK*/
+          error = {error}
+          loading = {loading}
+          searchedToDos = {searchedToDos}  
+          totalToDos = {totalToDos}
+          searchValue = {searchValue}
+          onError ={()=> <ToDosError />}
+          onLoading ={()=> <ToDosLoading />} 
+          onEmptyToDos ={()=> <EmptyToDos />} 
+          onEmptySearchResults = {(text)=> <p>no hay resultados para "{text}"</p>}
+          RenderItems ={todo => (
             <ToDoItem 
-            key={todo.text} 
-            text={todo.text} 
-            completed={todo.completed} 
-            onComplete={()=> completeToDos(todo.text)} 
-            onDelete={()=> deleteToDos(todo.text)}/>
-          ))}
-      </ToDoList>
-       <CreateToDo setOpenModal={setOpenModal}/>
+                key={todo.text} 
+                text={todo.text} 
+                completed={todo.completed} 
+                onComplete={()=> completeToDos(todo.text)} 
+                onDelete={()=> deleteToDos(todo.text)} 
+              />
+          )}
+        />
+      <CreateToDo setOpenModal={setOpenModal}/>
        {openModal && (
           <ModalMobile> 
             <ToDoForm />
