@@ -52,7 +52,7 @@ function App() {
       <CreateToDo setOpenModal={setOpenModal}/>
        {openModal && (
           <ModalMobile> 
-            <ToDoForm />
+            <ToDoForm setOpenModal={setOpenModal} addToDo={addToDo}/>
           </ModalMobile>
         )}
         <ModalDesktop> 
