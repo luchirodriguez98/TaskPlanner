@@ -10,7 +10,7 @@ function useTodos (){
 
     //estado para contador
 
-    const{item:toDos,saveItem:saveToDos, loading, error}=useLocalStorage('TODOS_V1',[]);
+    const{item:toDos,saveItem:saveToDos, loading, error}=useLocalStorage('TODOS_V2',[]);
 
     const completedToDos = toDos.filter(toDo=> toDo.completed).length;
     const totalToDos= toDos.length;
@@ -25,19 +25,19 @@ function useTodos (){
 
     //estado para items(marcar como hecho o eliminar)
 
-    const completeToDos = (text) =>{
+    const completeToDos = (id) =>{
 
     const newToDos = [...toDos];
-    const toDoIndex = newToDos.findIndex((toDo) => toDo.text === text);
+    const toDoIndex = newToDos.findIndex((toDo) => toDo.id === id);
     newToDos[toDoIndex].completed = true;
 
     saveToDos(newToDos);
     }
 
-    const deleteToDos = (text) =>{
+    const deleteToDos = (id) =>{
 
     const newToDos = [...toDos];
-    const toDoIndex = newToDos.findIndex((toDo) => toDo.text === text);
+    const toDoIndex = newToDos.findIndex((toDo) => toDo.id === id);
     newToDos.splice(toDoIndex,1);
 
     saveToDos(newToDos);
@@ -46,10 +46,12 @@ function useTodos (){
     //agregar item
 
     const addToDo = (text) =>{
+        const id = newToDoID(toDos);
         const newToDos = [...toDos];
         newToDos.push({
             text,
-            completed: false
+            completed: false, 
+            id
         })
 
         saveToDos(newToDos);
@@ -71,5 +73,12 @@ function useTodos (){
     }
 }
 
+function newToDoID (todolist){
+    if(!todolist.length){return 1}
+    
+    const IDlist = todolist.map(todo => todo.id)
+    const maxID = Math.max(...IDlist)
+    return maxID + 1
+}
 
 export {useTodos}

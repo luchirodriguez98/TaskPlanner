@@ -8,7 +8,7 @@ function ToDoList({error, onError, loading, onLoading, searchedToDos, onEmptyToD
             {loading && onLoading()}
             {(!loading && !totalToDos) && onEmptyToDos()}
             {searchedToDos?.map(todo => RenderItems(todo))}
-            {(totalToDos && !searchedToDos?.length) && onEmptySearchResults(searchValue)}
+            {(totalToDos && !searchedToDos.length) && onEmptySearchResults(searchValue)}
 
             <ul>
                 {children}

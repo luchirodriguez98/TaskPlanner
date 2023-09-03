@@ -41,11 +41,11 @@ function App() {
           onEmptySearchResults = {(text)=> <p>no hay resultados para "{text}"</p>}
           RenderItems ={todo => (
             <ToDoItem 
-                key={todo.text} 
+                key={todo.id} 
                 text={todo.text} 
                 completed={todo.completed} 
-                onComplete={()=> completeToDos(todo.text)} 
-                onDelete={()=> deleteToDos(todo.text)} 
+                onComplete={()=> completeToDos(todo.id)} 
+                onDelete={()=> deleteToDos(todo.id)} 
               />
           )}
         />

@@ -1,6 +1,6 @@
-function EmptySearchResults(text) {
+function EmptySearchResults(searchValue) {
     return (
-        <p>No hay resultados para {text}</p>
+        <p>No hay resultados para {searchValue}</p>
     )
 }
 
